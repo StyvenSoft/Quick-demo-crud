@@ -36,6 +36,7 @@ namespace Quick_demo_crud
         private void Customers_Load(object sender, EventArgs e)
         {
             Clear();
+            populateDataGridView();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -51,7 +52,17 @@ namespace Quick_demo_crud
                 db.SaveChanges();
             }
             MessageBox.Show("Submitted Sussessfully!");
+            populateDataGridView();
             Clear();
+        }
+
+        void populateDataGridView()
+        {
+            dgvCustomer.AutoGenerateColumns = false;
+            using (QDCRUDEntities db = new QDCRUDEntities())
+            {
+                dgvCustomer.DataSource = db.Customer.ToList<Customer>();
+            }
         }
     }
 }

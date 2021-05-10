@@ -183,6 +183,7 @@
             // 
             // Address
             // 
+            this.Address.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Address.DataPropertyName = "Address";
             this.Address.HeaderText = "Address";
             this.Address.Name = "Address";
