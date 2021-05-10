@@ -37,5 +37,21 @@ namespace Quick_demo_crud
         {
             Clear();
         }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            model.FirstName = txtFirstName.Text.Trim();
+            model.LastName = txtLastName.Text.Trim();
+            model.City = txtCity.Text.Trim();
+            model.Address = txtAddress.Text.Trim();
+
+            using (QDCRUDEntities db = new QDCRUDEntities())
+            {
+                db.Customer.Add(model);
+                db.SaveChanges();
+            }
+            MessageBox.Show("Submitted Sussessfully!");
+            Clear();
+        }
     }
 }
