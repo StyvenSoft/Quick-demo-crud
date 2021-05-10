@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Quick_demo_crud
 {
-    public partial class Form1 : Form
+    public partial class Customers : Form
     {
-        public Form1()
+        public Customers()
         {
             InitializeComponent();
         }
