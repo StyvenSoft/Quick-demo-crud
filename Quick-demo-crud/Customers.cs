@@ -28,7 +28,7 @@ namespace Quick_demo_crud
         void Clear()
         {
             txtFirstName.Text = txtLastName.Text = txtCity.Text = txtAddress.Text = "";
-            btnAdd.Text = "Save";
+            btnAdd.Text = "S̲ave";
             btnDelete.Enabled = false;
             model.CustomerID = 0;
         }
@@ -88,8 +88,26 @@ namespace Quick_demo_crud
                     txtCity.Text = model.City;
                     txtAddress.Text = model.Address;
                 }
-                btnAdd.Text = "Update";
+                btnAdd.Text = "U̲pdate";
                 btnDelete.Enabled = true;
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if(MessageBox.Show("Are you sure to delete?", "Quick demo CRUD", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                using (QDCRUDEntities db = new QDCRUDEntities())
+                {
+                    var entry = db.Entry(model);
+                    if (entry.State == System.Data.Entity.EntityState.Detached)
+                        db.Customer.Attach(model);
+                    db.Customer.Remove(model);
+                    db.SaveChanges();
+                    populateDataGridView();
+                    Clear();
+                    MessageBox.Show("Deleted Successfully!");
+                }
             }
         }
     }
